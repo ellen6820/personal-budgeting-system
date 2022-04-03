@@ -10,6 +10,10 @@ public class User {
     public float income;
     public String email;
 
+    public User(float account, Array userLimits, Array userGoals, float income, String email){
+        
+    }
+
     public void createLimit(){
 
     }
