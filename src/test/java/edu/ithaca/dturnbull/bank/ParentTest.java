@@ -3,6 +3,8 @@ package edu.ithaca.dturnbull.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.lang.reflect.Array;
+
 public class ParentTest{
     @Test
     void addChildTest(){
@@ -28,9 +30,11 @@ public class ParentTest{
         
         Child child = parent.addChild(0.0,0.0,temp,10.0,"kid@gmail.com");
 
-        parent.setLimit(50);
+        assertEquals(child.getLimit(), 0.0); //Tests that value of limit for child matches limit from adding child
 
-        assertEquals(child.getLimit(), 50); //Tests that value of limit for child is what was set by parent
+        parent.setLimit(50.0);
+
+        assertEquals(child.getLimit(), 50.0); //Tests that value of limit for child is what was set/changed by parent
 
     }
 
