@@ -7,7 +7,7 @@ public class UserTest {
 
         @Test
         public void createLimitTest(){
-                User user = new User("bts@mail.com");
+                User user = new User(10000, "bts@mail.com");
 
                 user.createLimit(4000.0);
                 assertEquals(4000.0, user.getLimit()); //Tests initial limit
