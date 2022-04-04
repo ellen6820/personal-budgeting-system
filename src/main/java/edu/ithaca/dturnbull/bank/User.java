@@ -16,13 +16,6 @@ public class User{
         
     }
 
-    public double getIncome(){
-        return income;
-    }
-
-    public double getLimit(){
-        return weeklyLimit;
-    }
     
     public String getEmail(){
         return email;
@@ -32,16 +25,26 @@ public class User{
         return balance;
     }
 
-    public void createLimit(){
-
+    public double createLimit(double weeklyLimit) throws InvalidInputException{
+        if(weeklyLimit < 0){
+            throw new InvalidInputException("Enter a valid amount");
+        }
+        else{
+            return weeklyLimit;
+        }
     }
 
     public void createGoal(){
 
     }
 
-    public void addIncome(){
-
+    public double addIncome(double income) throws InvalidInputException{
+        if(income <= 0){
+            throw new InvalidInputException("Enter a valid Income");
+        }else{
+            return income;
+        }
+        
     }
 
     public void seeHistory(){
