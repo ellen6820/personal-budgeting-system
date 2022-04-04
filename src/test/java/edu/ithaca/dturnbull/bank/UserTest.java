@@ -6,23 +6,26 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserTest {
 
         @Test
-        public void createLimitTest(){
+        public void createLimitTest() throws InvalidInputException{
                 User user = new User(10000, "bts@mail.com");
 
-                user.createLimit(4000.0);
-                assertEquals(4000.0, user.getLimit()); //Tests initial limit
+                assertEquals(4000.0, user.createLimit(4000.0)); //Tests initial limit
 
-                user.createLimit(20.0);
-                assertEquals(20.0, user.getLimit()); //Tests new limit
+                assertEquals(20.0, user.createLimit(20.0)); //Tests new limit
 
-                user.createLimit(-300.0);
-                assertThrows(InvalidInputException.class, () -> user.getLimit());//throws exception when in negative
+                assertThrows(InvalidInputException.class, () -> user.createLimit(-300.0));//throws exception when in negative
         
         }
 
         @Test
-        public void addIncomeTest(){
+        public void addIncomeTest() throws InvalidInputException{
+                User user = new User(20000, "cc@mail.com");
+                assertEquals(70000.0, user.addIncome(70000.0)); //initial income
 
+                assertEquals(25000.0, user.addIncome(25000.0));// new income
+
+                assertThrows(InvalidInputException.class, () -> user.addIncome(0));
+                assertThrows(InvalidInputException.class, () -> user.addIncome(-10000.0));
         }
 
         @Test

@@ -25,7 +25,7 @@ public class ParentTest{
 
         Parent parent = new Parent(0.0,"parent@gmail.com");
         
-        Child child = parent.addChild(0.0,"kid@gmail.com");
+        Child child = parent.addChild(0.0,0.0,"kid@gmail.com");
 
         assertEquals(child.getLimit(), 0.0); //Tests that value of limit for child matches limit from adding child
 
