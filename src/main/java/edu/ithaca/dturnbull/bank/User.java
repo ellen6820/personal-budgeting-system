@@ -1,19 +1,19 @@
 package edu.ithaca.dturnbull.bank;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User{
     
     public double balance;
     public double weeklyLimit;
-    public ArrayList<String> userGoals; //Change to ArrayList of goals
+    public ArrayList<String> userGoals;
     public double income;
     public String email;
 
     public User(double balance, String email){
         this.balance = balance;
         this.email = email;
+        
     }
 
     public double getIncome(){
@@ -32,7 +32,7 @@ public class User{
         return balance;
     }
 
-    public void createLimit(double weeklyLimit){
+    public void createLimit(){
 
     }
 
