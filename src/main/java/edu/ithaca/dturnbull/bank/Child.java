@@ -1,5 +1,7 @@
 package edu.ithaca.dturnbull.bank;
 
-public class Child {
-    
+public class Child extends User{
+
+
+
 }
