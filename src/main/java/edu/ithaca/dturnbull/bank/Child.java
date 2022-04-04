@@ -8,6 +8,10 @@ public class Child extends User{
         this.weeklyLimit = weeklyLimit;
     }
 
+    public double getLimit(){
+        return weeklyLimit;
+    }
+
 
 
 }

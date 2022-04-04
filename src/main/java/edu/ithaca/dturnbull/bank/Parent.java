@@ -11,7 +11,7 @@ public class Parent extends User{
 
     }
 
-    Child addChild(double balance, String email){
+    Child addChild(double balance, double weeklyLimit, String email){
 
         Child child = new Child(balance,weeklyLimit,email);
 
