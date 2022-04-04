@@ -5,12 +5,21 @@ import java.lang.reflect.Array;
 public class User {
     
     public float account;
-    public Array userLimits;
+    public double userLimits;
     public Array userGoals;
     public float income;
     public String email;
 
-    public void createLimit(){
+    public User(String email){
+        this.email = email;
+    } 
+    
+    public void createLimit(double userLimits){
+
+    }
+
+    public double getLimit(){
+        return -1.0;
 
     }
 
