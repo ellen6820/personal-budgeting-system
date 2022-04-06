@@ -29,6 +29,10 @@ public class User{
         return weeklyLimit;
     }
 
+    public double getIncome(){
+        return income;
+    }
+    
     public double createLimit(double weeklyLimit) throws InvalidInputException{
         if(weeklyLimit < 0){
             throw new InvalidInputException("Enter a valid amount");
