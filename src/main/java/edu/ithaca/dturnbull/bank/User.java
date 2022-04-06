@@ -10,9 +10,10 @@ public class User{
     public double income;
     public String email;
 
-    public User(double balance, String email){
+    public User(double balance, double weeklyLimit, String email){
         this.balance = balance;
         this.email = email;
+        this.weeklyLimit = weeklyLimit;
         
     }
 

@@ -9,9 +9,9 @@ public class ParentTest{
     @Test
     void addChildTest(){
 
-        Parent parent = new Parent(0.0,"parent@gmail.com");
+        Parent parent = new Parent(0.0,0.0,"parent@gmail.com");
 
-        Child child = parent.addChild(0.0,0.0,"kid@gmail.com");
+        Child child = parent.addChild(10.0,0.0,"kid@gmail.com");
 
         assertEquals(10.0, child.getBalance()); //Tests if child exists by seeing if the balance 
                                              //matches the value passed in while adding a child
@@ -23,13 +23,13 @@ public class ParentTest{
     @Test
     void setLimitTest(){
 
-        Parent parent = new Parent(0.0,"parent@gmail.com");
+        Parent parent = new Parent(0.0,0.0,"parent@gmail.com");
         
         Child child = parent.addChild(0.0,10.0,"kid@gmail.com");
 
-        assertEquals(child.getLimit(), 10.0); //Tests that value of limit for child matches limit from adding child
+        assertEquals(10.0, child.getLimit()); //Tests that value of limit for child matches limit from adding child
 
-        parent.setLimit(50.0);
+        parent.setChildLimit(child,50.0);
 
         assertEquals(50.0,child.getLimit()); //Tests that value of limit for child is what was set/changed by parent
 

@@ -2,12 +2,12 @@ package edu.ithaca.dturnbull.bank;
 
 //import java.lang.reflect.Array;
 
-public class Parent extends User{
+public class Parent extends User {
 
 
     //Constructor - calls super constructor from user 
-    public Parent(double balance, String email) {
-        super(balance, email);
+    public Parent(double balance, double weeklyLimit, String email) {
+        super(balance, weeklyLimit, email);
 
     }
 
@@ -19,9 +19,9 @@ public class Parent extends User{
 
     }
     
-    void setLimit(double limit){
+    void setChildLimit(Child child,double limit){
 
-        weeklyLimit = limit;
+        child.weeklyLimit = limit;
 
     }
 
