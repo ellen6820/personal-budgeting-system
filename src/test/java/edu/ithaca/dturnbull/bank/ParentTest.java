@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParentTest{
     @Test
@@ -43,6 +45,31 @@ public class ParentTest{
 
     @Test
     void seeChildHistoryTest(){
+
+        //ArrayList<Child> childHistory = new ArrayList<Child>();
+        Parent parent = new Parent(0.0,0.0,"parent@gmail.com");
+        
+        Child child1 = parent.addChild(0.0,0.0,"kid@gmail.com");
+
+        //childHistory.add(child1); // Adds 1 child to the list
+
+        Child child2 = parent.addChild(10.0,10.0,"kid@gmail.com");
+
+        //childHistory.add(child2); // Adds another child to the list
+
+        Child child3 = parent.addChild(50.0,10.0,"kid@gmail.com");
+
+        //childHistory.add(child3); // Adds a third child to the list
+
+        ArrayList<Child> children = parent.getChildren();
+
+        assertEquals(3, parent.getChildren().size()); // Tests that all 3 children are correctly inserted into list
+
+        assertEquals (0.0, children.get(0).getBalance()); //Tests balance of first child in list
+
+        assertEquals (10.0, children.get(1).getBalance()); //Tests balance of second child in list 
+
+        assertEquals (50.0, children.get(2).getBalance()); //Tests balance of third child in list 
 
 
     }
