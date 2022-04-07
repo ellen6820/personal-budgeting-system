@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class User {
     public double balance;
     public ArrayList<String> userGoals;
+    public double weeklyLimit;
     public double income;
     public String email;
 
-    public User(double balance, String email) {
+    public User(double balance, double weeklyLimit, String email) {
         this.balance = balance;
         this.email = email;
+        this.weeklyLimit = weeklyLimit;
     }
 
     public String getEmail() {
