@@ -9,11 +9,14 @@ public class User{
     public ArrayList<String> userGoals;
     public double income;
     public String email;
+    public ArrayList<Child> children;
 
-    public User(double balance, String email){
+    public User(double balance, double weeklyLimit, String email){
         this.balance = balance;
         this.email = email;
-        
+        this.weeklyLimit = weeklyLimit;
+
+        children = new ArrayList<Child>();
     }
 
     
@@ -33,6 +36,10 @@ public class User{
         return income;
     }
     
+    public ArrayList<Child> getChildren(){
+        return children;
+    }
+
     public double createLimit(double weeklyLimit) throws InvalidInputException{
         if(weeklyLimit < 0){
             throw new InvalidInputException("Enter a valid amount");
