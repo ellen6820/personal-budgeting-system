@@ -6,46 +6,39 @@ import java.util.ArrayList;
 
 public class Parent extends User {
 
+    public ArrayList<Child> children;
 
-    //Constructor - calls super constructor from user 
+    // Constructor - calls super constructor from user
     public Parent(double balance, double weeklyLimit, String email) {
         super(balance, weeklyLimit, email);
-
+        children = new ArrayList<Child>();
     }
 
-    Child addChild(double balance, double weeklyLimit, String email){
-
-        Child child = new Child(balance,weeklyLimit,email);
-
+    Child addChild(double balance, double weeklyLimit, String email) {
+        Child child = new Child(balance, weeklyLimit, email);
         children.add(child);
-
         return child;
-
     }
-    
-    void setChildLimit(Child child, double limit){
 
+    void setChildLimit(Child child, double limit) {
         child.weeklyLimit = limit;
+    }
+
+    void setLock() {
 
     }
 
-    void setLock(){
-
-
-    }
-    
-    ArrayList<Child> seeChildHistory(){
-
+    ArrayList<Child> seeChildHistory() {
         ArrayList<Child> children = new ArrayList<Child>();
-
-        for (int i = 0; i < children.size(); i++){
-
+        for (int i = 0; i < children.size(); i++) {
             System.out.println(children.get(i).getBalance());
             System.out.println(children.get(i).getLimit());
             System.out.println(children.get(i).getEmail());
-
         }
-        
+        return children;
+    }
+
+    public ArrayList<Child> getChildren() {
         return children;
     }
 }
