@@ -24,10 +24,6 @@ public class Parent extends User {
         child.weeklyLimit = limit;
     }
 
-    void setLock() {
-
-    }
-
     ArrayList<Child> seeChildHistory() {
         ArrayList<Child> children = new ArrayList<Child>();
         for (int i = 0; i < children.size(); i++) {

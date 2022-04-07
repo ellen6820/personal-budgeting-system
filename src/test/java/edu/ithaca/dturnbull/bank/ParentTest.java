@@ -25,11 +25,6 @@ public class ParentTest {
     }
 
     @Test
-    void setLockTest() {
-
-    }
-
-    @Test
     void seeChildHistoryTest() {
         Parent parent = new Parent(0.0, 0.0, "parent@gmail.com");
         Child child1 = parent.addChild(0.0, 0.0, "kid@gmail.com");
