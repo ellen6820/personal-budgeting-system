@@ -7,7 +7,7 @@ public class UserTest {
 
         @Test
         public void createLimitTest() throws InvalidInputException{
-                User user = new User(10000, "bts@mail.com");
+                User user = new User(10000, 0.0, "bts@mail.com");
 
                 assertEquals(4000.0, user.createLimit(4000.0)); //Tests initial limit
 
@@ -19,7 +19,7 @@ public class UserTest {
 
         @Test
         public void addIncomeTest() throws InvalidInputException{
-                User user = new User(20000, "cc@mail.com");
+                User user = new User(20000, 0.0, "cc@mail.com");
                 assertEquals(70000.0, user.addIncome(70000.0)); //initial income
 
                 assertEquals(25000.0, user.addIncome(25000.0));// new income
