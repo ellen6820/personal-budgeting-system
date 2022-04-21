@@ -9,5 +9,9 @@ public class Transaction{
     public void createTransaction(String type, int amount){
 
     }
+
+    public String getTransactionHistory(){
+        return null;
+    }
     
 }
