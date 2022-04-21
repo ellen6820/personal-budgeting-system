@@ -51,8 +51,8 @@ public class User {
         }
     }
 
-    public void seeHistory() {
-
+    public String seeHistory() {
+        return null;
     }
 
     public void createTransaction() {
