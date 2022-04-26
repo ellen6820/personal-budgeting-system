@@ -7,7 +7,7 @@ public class UserTest {
 
         @Test
         public void createLimitTest() throws InvalidInputException{
-                User user = new User(10000, 0.0, "bts@mail.com");
+                User user = new User(10000, 0.0,"bts@mail.com");
 
                 assertEquals(4000.0, user.createLimit(4000.0)); //Tests initial limit
 
@@ -19,7 +19,7 @@ public class UserTest {
 
         @Test
         public void addIncomeTest() throws InvalidInputException{
-                User user = new User(20000, 0.0, "cc@mail.com");
+                User user = new User(20000, 0.0,"cc@mail.com");
                 assertEquals(70000.0, user.addIncome(70000.0)); //initial income
 
                 assertEquals(25000.0, user.addIncome(25000.0));// new income
@@ -30,7 +30,7 @@ public class UserTest {
 
         @Test
         public void setGoalTest(){
-                User user1 = new User(0, null, null, 0, null);
+                User user1 = new User(20000, 0.0,"cc@mail.com");
                 user1.createGoal("New York City", 100); //needs a date
                 assertEquals(user1.seeGoals(), "Goal Name: New York City - $100 \n Amount Left: 100");
  
@@ -40,10 +40,11 @@ public class UserTest {
                 assertThrows(IllegalArgumentException.class, () -> user1.createGoal("Goal1", -90)); //negative amount
         
         }
+        
 
         @Test
         public void seeHistoryTest(){
-                User user1 = new User(0, null, null, 0, null);
+                User user1 = new User(20000, 0.0,"cc@mail.com");
                 user1.createTransaction("Shopping", 10);
                 user1.createTransaction("Food", 50); 
 
@@ -52,4 +53,17 @@ public class UserTest {
                 assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", -90)); //negative amount
                 assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", 1000000000)); // more than balance
         }
+        
+
+        @Test
+        void createTransactionTest(){
+            User user1 = new User(50000, 100, "example@gmail.com");
+    
+            Transaction newPurchase = user1.createTransaction("Food", 10);
+
+            assertEquals(newPurchase.getType(), "Food");
+            assertEquals(newPurchase.getAmount(), 10);
+    
+        }
+    
 }

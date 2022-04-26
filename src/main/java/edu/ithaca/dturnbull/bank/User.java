@@ -6,6 +6,7 @@ public class User {
     public double balance;
     public double weeklyLimit;
     public ArrayList<String> userGoals;
+    public ArrayList<Transaction> transactions;
     public double income;
     public String email;
 
@@ -13,6 +14,7 @@ public class User {
         this.balance = balance;
         this.email = email;
         this.weeklyLimit = weeklyLimit;
+        this.transactions = new ArrayList<Transaction>();
     }
 
     public String getEmail() {
@@ -55,7 +57,11 @@ public class User {
         return null;
     }
 
-    public void createTransaction() {
+    Transaction createTransaction(String type, double amount) {
+        Transaction newTransaction = new Transaction(type, amount);
 
+        transactions.add(newTransaction);
+
+        return newTransaction;
     }
 }
