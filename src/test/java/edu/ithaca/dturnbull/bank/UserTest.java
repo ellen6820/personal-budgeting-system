@@ -44,7 +44,7 @@ public class UserTest {
 
         @Test
         public void seeHistoryTest(){
-                User user1 = new User(0, null, null, 0, null);
+                User user1 = new User(20000, 0.0,"cc@mail.com");
                 user1.createTransaction("Shopping", 10);
                 user1.createTransaction("Food", 50); 
 

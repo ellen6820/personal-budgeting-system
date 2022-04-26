@@ -1,7 +1,7 @@
 package edu.ithaca.dturnbull.bank;
 
 public class Transaction{
-    public String date;
+    //git public String date;
     public double amount;
     public String type;
 
