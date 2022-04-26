@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class TransactionTest {
 
+
     @Test
     void TransactionHistoryTest(){
         User user1 = new User(50000, 100, "example@gmail.com");
