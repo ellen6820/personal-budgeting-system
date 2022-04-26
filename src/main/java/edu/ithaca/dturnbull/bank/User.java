@@ -2,69 +2,60 @@ package edu.ithaca.dturnbull.bank;
 
 import java.util.ArrayList;
 
-public class User{
-    
+public class User {
     public double balance;
     public double weeklyLimit;
     public ArrayList<String> userGoals;
     public double income;
     public String email;
-    public ArrayList<Child> children;
 
-    public User(double balance, double weeklyLimit, String email){
+    public User(double balance, double weeklyLimit, String email) {
         this.balance = balance;
         this.email = email;
         this.weeklyLimit = weeklyLimit;
-
-        children = new ArrayList<Child>();
     }
 
-    
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
-    
-    public double getBalance(){
+
+    public double getBalance() {
         return balance;
     }
 
-    public double getLimit(){
+    public double getLimit() {
         return weeklyLimit;
     }
 
-    public ArrayList<Child> getChildren(){
-        return children;
+    public double getIncome() {
+        return income;
     }
 
-    public double createLimit(double weeklyLimit) throws InvalidInputException{
-        if(weeklyLimit < 0){
+    public double createLimit(double weeklyLimit) throws InvalidInputException {
+        if (weeklyLimit < 0) {
             throw new InvalidInputException("Enter a valid amount");
-        }
-        else{
+        } else {
             return weeklyLimit;
         }
     }
 
-    public void createGoal(){
+    public void createGoal() {
 
     }
 
-    public double addIncome(double income) throws InvalidInputException{
-        if(income <= 0){
+    public double addIncome(double income) throws InvalidInputException {
+        if (income <= 0) {
             throw new InvalidInputException("Enter a valid Income");
-        }else{
+        } else {
             return income;
         }
-        
     }
 
-    public void seeHistory(){
-
+    public String seeHistory() {
+        return null;
     }
 
-    public void createTransaction(){
-        
+    public void createTransaction() {
+
     }
-
-
 }
