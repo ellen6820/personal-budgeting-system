@@ -15,6 +15,7 @@ public class User {
         this.email = email;
         this.weeklyLimit = weeklyLimit;
         this.transactions = new ArrayList<Transaction>();
+
     }
 
     public String getEmail() {
@@ -31,6 +32,10 @@ public class User {
 
     public double getIncome() {
         return income;
+    }
+
+    public ArrayList<Transaction> getTransactionHistory(){
+        return transactions;
     }
 
     public double createLimit(double weeklyLimit) throws InvalidInputException {
@@ -61,6 +66,8 @@ public class User {
         Transaction newTransaction = new Transaction(type, amount);
 
         transactions.add(newTransaction);
+
+        balance = balance - amount;
 
         return newTransaction;
     }

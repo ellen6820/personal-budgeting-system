@@ -28,6 +28,7 @@ public class UserTest {
                 assertThrows(InvalidInputException.class, () -> user.addIncome(-10000.0));
         }
 
+        /*
         @Test
         public void setGoalTest(){
                 User user1 = new User(20000, 0.0,"cc@mail.com");
@@ -40,6 +41,7 @@ public class UserTest {
                 assertThrows(IllegalArgumentException.class, () -> user1.createGoal("Goal1", -90)); //negative amount
         
         }
+        */
         
 
         @Test
@@ -57,13 +59,20 @@ public class UserTest {
 
         @Test
         void createTransactionTest(){
-            User user1 = new User(50000, 100, "example@gmail.com");
+            User user1 = new User(500, 100, "example@gmail.com");
     
             Transaction newPurchase = user1.createTransaction("Food", 10);
 
             assertEquals(newPurchase.getType(), "Food");
             assertEquals(newPurchase.getAmount(), 10);
-    
+
+            assertEquals(user1.getBalance(), 490);
+
+            user1.createTransaction("Food", 100);
+
+            assertEquals(user1.getBalance(), 390);
+
         }
+
     
 }
