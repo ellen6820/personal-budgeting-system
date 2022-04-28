@@ -3,12 +3,14 @@ package edu.ithaca.dturnbull.bank;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.naming.InsufficientResourcesException;
+
 public class UserInterface {
 
     static Scanner scanner = new Scanner(System.in);
     static User user;
 
-    public static void main(String[] args) throws InvalidInputException {
+    public static void main(String[] args) throws InvalidInputException, InsufficientResourcesException {
         System.out.println("| ------ | PERSONAL BUDGETING SYSTEM v0.2.5 | ------ |");
         User testUser = init_user();
         if (testUser != null) {
@@ -35,7 +37,7 @@ public class UserInterface {
         return user;
     }
 
-    static void menu_main() throws InvalidInputException {
+    static void menu_main() throws InvalidInputException, InsufficientResourcesException {
         while (true) {
             print_menu_main();
             System.out.print("CHOICE: ");
@@ -73,7 +75,7 @@ public class UserInterface {
         System.out.println("4\tVIEW BALANCE");
     }
 
-    static void menu_purchase() {
+    static void menu_purchase() throws InsufficientResourcesException {
         System.out.println("- PURCHASE MENU - ");
 
         System.out.print("Enter item price: ");
