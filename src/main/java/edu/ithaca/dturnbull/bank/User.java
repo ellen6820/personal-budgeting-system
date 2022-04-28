@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class User {
     public double balance;
     public double weeklyLimit;
-    public ArrayList<String> userGoals;
+    public ArrayList<Goal> userGoals;
     public ArrayList<Transaction> transactions;
     public double income;
     public String email;
@@ -15,6 +15,7 @@ public class User {
         this.email = email;
         this.weeklyLimit = weeklyLimit;
         this.transactions = new ArrayList<Transaction>();
+        this.userGoals = new ArrayList<Goal>();
 
     }
 
@@ -46,8 +47,17 @@ public class User {
         }
     }
 
-    public void createGoal() {
+    Goal createGoal(String goals, double amount) throws InvalidInputException {
+        Goal newGoal = new Goal(goals, amount);
+        if(amount < 0){
+            userGoals.add(newGoal);
+        }
+        else{
+            throw new InvalidInputException("Enter a valid amount");
+        }
+        
 
+        return newGoal;
     }
 
     public double addIncome(double income) throws InvalidInputException {
