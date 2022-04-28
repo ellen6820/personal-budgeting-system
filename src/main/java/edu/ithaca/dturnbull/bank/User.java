@@ -82,17 +82,15 @@ public class User {
     }
 
     Transaction createTransaction(String type, double amount) throws InsufficientResourcesException {
-        Transaction newTransaction = new Transaction(type, amount);
-
-        transactions.add(newTransaction);
 
         if (balance > amount){
+            Transaction newTransaction = new Transaction(type, amount);
             balance = balance - amount;
+            transactions.add(newTransaction);
+            return newTransaction;
         }
         else {
             throw new InsufficientResourcesException("You do not have enough money to make this purchase");
         }
-
-        return newTransaction;
     }
 }
