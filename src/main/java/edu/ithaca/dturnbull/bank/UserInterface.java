@@ -1,6 +1,5 @@
 package edu.ithaca.dturnbull.bank;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javax.naming.InsufficientResourcesException;
@@ -85,7 +84,10 @@ public class UserInterface {
         String type = scanner.next();
 
         int startSize = user.getTransactionHistory().size();
-        user.createTransaction(type, (int)price);
+        
+        try {
+            user.createTransaction(type, (int)price);
+        } catch (Exception InsufficientResourcesException) { }
 
         String output = user.getTransactionHistory().size() == startSize + 1 
         ? "Item successfully purchased." : "Could not purchase item.";
