@@ -24,7 +24,7 @@ public class Limit {
     }
 
     public void resetLimit(){
-
+        
     }
 
     public void addSpendingAmount(){
@@ -32,7 +32,7 @@ public class Limit {
     }
 
     public void overspendingLimit(){
-        
+
     }
 
 }

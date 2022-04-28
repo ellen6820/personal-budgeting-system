@@ -3,6 +3,8 @@ package edu.ithaca.dturnbull.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import javax.naming.InsufficientResourcesException;
+
 public class UserTest {
 
         @Test
@@ -45,7 +47,7 @@ public class UserTest {
         
 
         @Test
-        public void seeHistoryTest(){
+        public void seeHistoryTest() throws InsufficientResourcesException{
                 User user1 = new User(20000, 0.0,"cc@mail.com");
                 user1.createTransaction("Shopping", 10);
                 user1.createTransaction("Food", 50); 
@@ -58,7 +60,7 @@ public class UserTest {
         
 
         @Test
-        void createTransactionTest(){
+        void createTransactionTest() throws InsufficientResourcesException{
             User user1 = new User(500, 100, "example@gmail.com");
     
             Transaction newPurchase = user1.createTransaction("Food", 10);

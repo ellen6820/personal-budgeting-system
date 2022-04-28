@@ -1,11 +1,13 @@
 package edu.ithaca.dturnbull.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import javax.naming.InsufficientResourcesException;
 public class TransactionTest {
 
 
     @Test
-    void TransactionHistoryTest(){
+    void TransactionHistoryTest() throws InsufficientResourcesException{
         User user1 = new User(50000, 100, "example@gmail.com");
 
         assertEquals("Your last 10 Transactions: \n You have no transactions", user1.getTransactionHistory());
