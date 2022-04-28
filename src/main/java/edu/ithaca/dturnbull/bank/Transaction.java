@@ -23,10 +23,9 @@ public class Transaction{
     /*public void createTransaction(String type, double amount){
         Transaction newTransaction = new Transaction(type, amount);
     }
-    */
 
     public String getTransactionHistory(){
         return null;
-    }
+    }*/
     
 }
