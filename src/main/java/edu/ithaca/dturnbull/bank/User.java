@@ -71,7 +71,14 @@ public class User {
     }
 
     public String seeHistory() {
-        return null;
+        String output = "";
+        double sumAmount = 0;
+        for (int i = 0; i < transactions.size(); i++) {
+            output += "#" + (i + 1) + ": {" + transactions.get(i).type + ", $" + transactions.get(i).amount + "}\n";
+            sumAmount += transactions.get(i).amount;
+        }
+        output += "Total: " + sumAmount;
+        return output;
     }
 
     Transaction createTransaction(String type, double amount) throws InsufficientResourcesException {

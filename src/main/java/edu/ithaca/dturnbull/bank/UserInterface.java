@@ -1,16 +1,18 @@
 package edu.ithaca.dturnbull.bank;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
 
     static Scanner scanner = new Scanner(System.in);
+    static User user;
 
-    public static void main(String[] args) {
-        System.out.println("----------------PERSONAL BUDGETING SYSTEM v 0.2.5----------------");
+    public static void main(String[] args) throws InvalidInputException {
+        System.out.println("| ------ | PERSONAL BUDGETING SYSTEM v0.2.5 | ------ |");
         User testUser = init_user();
         if (testUser != null) {
-            System.out.println("User successfully created.");
+            System.out.println("\nUser successfully created.");
             System.out.println("Welcome " + testUser.getEmail() + "!");
             menu_main();
         }
@@ -28,13 +30,17 @@ public class UserInterface {
         System.out.print("Enter email: ");
         String email = scanner.next();
 
-        return new User(balance, weeklyLimit, email);
+        user = new User(balance, weeklyLimit, email);
+
+        return user;
     }
 
-    static void menu_main() {
+    static void menu_main() throws InvalidInputException {
         while (true) {
             print_menu_main();
+            System.out.print("CHOICE: ");
             int choice = scanner.nextInt();
+            printLine();
             switch (choice) {
                 case 0:
                     exit();
@@ -45,23 +51,30 @@ public class UserInterface {
                 case 2:
                     menu_see_log();
                     break;
+                case 3:
+                    menu_alter_limit();
+                    break;
+                case 4:
+                    System.out.println("Your current balance is: " + user.getBalance());
+                    break;
                 default:
-                    System.out.println("Wrong choice");
+                    System.out.println("INVALID CHOICE");
             }
         }
     }
 
     static void print_menu_main() {
         printLine();
-        System.out.println("!!!\tMAIN MENU\t!!!");
+        System.out.println("- MAIN MENU - ");
         System.out.println("0\tEXIT");
         System.out.println("1\tMAKE A PURCHASE");
         System.out.println("2\tVIEW TRANSACTION HISTORY");
-        printLine();
+        System.out.println("3\tALTER LIMIT");
+        System.out.println("4\tVIEW BALANCE");
     }
 
     static void menu_purchase() {
-        System.out.println("!-!-! PURCHASE MENU !-!-!");
+        System.out.println("- PURCHASE MENU - ");
 
         System.out.print("Enter item price: ");
         float price = scanner.nextFloat();
@@ -69,15 +82,29 @@ public class UserInterface {
         System.out.print("Enter item type: ");
         String type = scanner.next();
 
-        Transaction purchase = new Transaction();
-        purchase.createTransaction(type, (int)price);
+        int startSize = user.getTransactionHistory().size();
+        user.createTransaction(type, (int)price);
 
-        // TODO: check for transaction success
-        System.out.println("Item successfully purchased.");
+        String output = user.getTransactionHistory().size() == startSize + 1 
+        ? "Item successfully purchased." : "Could not purchase item.";
+        System.out.println(output);
     }
 
     static void menu_see_log() {
-        // TODO: TransactionHistory must be functional somewhere
+        System.out.println(user.getEmail() + "'s purchases:");
+        System.out.println(user.seeHistory());
+    }
+
+    static void menu_alter_limit() throws InvalidInputException {
+        System.out.println("Your current limit is: " + user.getLimit());
+        System.out.print("Enter desired weekly limit: ");
+        float newLimit = scanner.nextFloat();
+        user.createLimit(newLimit);
+        if (user.getLimit()==newLimit) {
+            System.out.println("Successful limit change.");
+        } else {
+            System.out.print("Unsuccessful change to limit.");
+        }
     }
 
     // -----------------------------------------------------------
@@ -89,6 +116,6 @@ public class UserInterface {
     }
 
     static void printLine() {
-        System.out.println("--------------------------");
+        System.out.println("-------------------------");
     }
 }
