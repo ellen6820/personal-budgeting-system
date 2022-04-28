@@ -2,6 +2,8 @@ package edu.ithaca.dturnbull.bank;
 
 import java.util.ArrayList;
 
+import javax.naming.InsufficientResourcesException;
+
 public class User {
     public double balance;
     public double weeklyLimit;
@@ -72,12 +74,17 @@ public class User {
         return null;
     }
 
-    Transaction createTransaction(String type, double amount) {
+    Transaction createTransaction(String type, double amount) throws InsufficientResourcesException {
         Transaction newTransaction = new Transaction(type, amount);
 
         transactions.add(newTransaction);
 
-        balance = balance - amount;
+        if (balance > amount){
+            balance = balance - amount;
+        }
+        else {
+            throw new InsufficientResourcesException("You do not have enough money to make this purchase");
+        }
 
         return newTransaction;
     }
