@@ -1,7 +1,6 @@
 package edu.ithaca.dturnbull.bank;
 
 import java.util.ArrayList;
-
 import javax.naming.InsufficientResourcesException;
 
 public class User {
@@ -31,6 +30,10 @@ public class User {
         return weeklyLimit;
     }
 
+    public ArrayList<Transaction> getTransactions() {
+        return this.transactions;
+    }
+
     /**
      * 
      * @param weeklyLimit
@@ -41,6 +44,7 @@ public class User {
         if (weeklyLimit < 0) {
             throw new InvalidInputException("Enter a valid amount");
         } else {
+            this.weeklyLimit = weeklyLimit;
             return weeklyLimit;
         }
     }
@@ -54,13 +58,11 @@ public class User {
      */
     Goal createGoal(String goals, double amount) throws InvalidInputException {
         Goal newGoal = new Goal(goals, amount);
-        if(amount < 0){
+        if (amount < 0){
             userGoals.add(newGoal);
-        }
-        else{
+        } else {
             throw new InvalidInputException("Enter a valid amount");
         }
-        
         return newGoal;
     }
 
@@ -90,30 +92,27 @@ public class User {
 
         //last 10 transactions only 
         int startParse = 0;
-        if(transactions.size() > 10){
+        if (transactions.size() > 10) {
             startParse = transactions.size() - 10;
         }
 
         for (int i = startParse; i < transactions.size(); i++) {
-            
             output += "#" + transactionNumber + ": {" + transactions.get(i).type + ", $" + transactions.get(i).amount + "}\n";
             sumAmount += transactions.get(i).amount;
             transactionNumber += 1;
         }
-        output += "Total: " + sumAmount;
+        output += "Total Spent: $" + sumAmount;
         return output;
     }
 
     Transaction createTransaction(String type, double amount) throws InsufficientResourcesException {
-
         if (balance > amount){
             Transaction newTransaction = new Transaction(type, amount);
             balance = balance - amount;
             transactions.add(newTransaction);
             return newTransaction;
-        }
-        else {
+        } else {
             throw new InsufficientResourcesException("You do not have enough money to make this purchase");
         }
     }
-}
+}  
