@@ -26,8 +26,8 @@ public class UserTest {
 
                 assertEquals(25000.0, user.addIncome(25000.0));// new income
 
-                assertThrows(InvalidInputException.class, () -> user.addIncome(0));
-                assertThrows(InvalidInputException.class, () -> user.addIncome(-10000.0));
+                assertThrows(InvalidInputException.class, () -> user.addIncome(0)); //invalid amount
+                assertThrows(InvalidInputException.class, () -> user.addIncome(-10000.0)); //negative amount
         }
 
         /*
@@ -45,20 +45,6 @@ public class UserTest {
         }
         */
         
-
-        @Test
-        public void seeHistoryTest() throws InsufficientResourcesException{
-                User user1 = new User(20000, 0.0,"cc@mail.com");
-                user1.createTransaction("Shopping", 10);
-                user1.createTransaction("Food", 50); 
-
-                assertEquals(user1.seeHistory(), "Last 5 Transactions: \n Shopping $10 \n Food $50");
-            
-                assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", -90)); //negative amount
-                assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", 1000000000)); // more than balance
-        }
-        
-
         @Test
         void createTransactionTest() throws InsufficientResourcesException{
             User user1 = new User(500, 100, "example@gmail.com");
@@ -75,6 +61,21 @@ public class UserTest {
             assertEquals(user1.getBalance(), 390);
 
         }
+
+        @Test
+        public void seeHistoryTest() throws InsufficientResourcesException{
+                User user1 = new User(20000, 0.0,"cc@mail.com");
+                user1.createTransaction("Shopping", 10); //regular transaction
+                user1.createTransaction("Food", 50); //regular transaction
+
+                assertEquals(user1.seeHistory(), "Last 5 Transactions: \n Shopping $10 \n Food $50");
+            
+                assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", -90)); //negative amount
+                assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", 1000000000)); // more than balance
+        }
+        
+
+     
 
     
 }

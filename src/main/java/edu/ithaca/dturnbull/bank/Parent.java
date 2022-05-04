@@ -14,26 +14,29 @@ public class Parent extends User {
         children = new ArrayList<Child>();
     }
 
+    // creates a child associated with a parent account
     Child addChild(double balance, double weeklyLimit, String email) {
         Child child = new Child(balance, weeklyLimit, email);
         children.add(child);
         return child;
     }
 
+    // allows a parent to influence a child's weekly spending limit
     void setChildLimit(Child child, double limit) {
         child.weeklyLimit = limit;
     }
 
+    // allows a parent to see a child's most recent spending
     ArrayList<Child> seeChildHistory() {
         ArrayList<Child> children = new ArrayList<Child>();
         for (int i = 0; i < children.size(); i++) {
-            System.out.println(children.get(i).getBalance());
+            System.out.println(children.get(i).seeHistory());
             System.out.println(children.get(i).getLimit());
-            System.out.println(children.get(i).getEmail());
         }
         return children;
     }
 
+    // returns the child accounts under a parent
     public ArrayList<Child> getChildren() {
         return children;
     }
