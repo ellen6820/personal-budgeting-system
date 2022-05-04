@@ -9,6 +9,6 @@ Sprint [1]
 
 
 Sprint [2]
--Scrum Master: Brendan
--Goal: Allow a user to log a transaction, view transaction history, parent can control child's account (set locks, limits)
-- Class Diagram: 
+ - Scrum Master: Brendan
+ - Goal: Allow a user to log a transaction, view transaction history, parent can control child's account (set locks, limits)
+ - Class Diagram: 
