@@ -29,24 +29,9 @@ public class UserTest {
                 assertThrows(InvalidInputException.class, () -> user.addIncome(0)); //invalid amount
                 assertThrows(InvalidInputException.class, () -> user.addIncome(-10000.0)); //negative amount
         }
-
-        /*
-        @Test
-        public void setGoalTest(){
-                User user1 = new User(20000, 0.0,"cc@mail.com");
-                user1.createGoal("New York City", 100); //needs a date
-                assertEquals(user1.seeGoals(), "Goal Name: New York City - $100 \n Amount Left: 100");
- 
-                user1.createGoal("Dyson Hairdryer", 500); //needs a date
-                assertEquals(user1.seeGoals(), "Goal Name: New York City - $100 \n Amount Left: 100 \n Goal Name: Dyson Hairdryer - $500 \n Amount Left: 500");
-                
-                assertThrows(IllegalArgumentException.class, () -> user1.createGoal("Goal1", -90)); //negative amount
-        
-        }
-        */
         
         @Test
-        void createTransactionTest() throws InsufficientResourcesException{
+        void createTransactionTest() throws InsufficientResourcesException{ //tests the transaction constructor
             User user1 = new User(500, 100, "example@gmail.com");
     
             Transaction newPurchase = user1.createTransaction("Food", 10);
