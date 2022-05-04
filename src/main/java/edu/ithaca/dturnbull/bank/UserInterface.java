@@ -58,6 +58,9 @@ public class UserInterface {
                 case 4:
                     System.out.println("Your current balance is: " + user.getBalance());
                     break;
+                case 5:
+                    menu_manage_family();
+                    break;
                 default:
                     System.out.println("INVALID CHOICE");
             }
@@ -70,8 +73,9 @@ public class UserInterface {
         System.out.println("0\tEXIT");
         System.out.println("1\tMAKE A PURCHASE");
         System.out.println("2\tVIEW TRANSACTION HISTORY");
-        System.out.println("3\tALTER LIMIT");
-        System.out.println("4\tVIEW BALANCE");
+        System.out.println("3\tCHANGE WEEKLY LIMIT");
+        System.out.println("4\tVIEW BALANCE & LIMIT");
+        System.out.println("5\tOPEN FAMILY MANAGER");
     }
 
     static void menu_purchase() throws InsufficientResourcesException {
@@ -84,13 +88,12 @@ public class UserInterface {
         String type = scanner.next();
 
         int startSize = user.getTransactionHistory().size();
-        
         try {
             user.createTransaction(type, (int)price);
-        } catch (Exception InsufficientResourcesException) { }
+        } catch (Exception InsufficientResourcesException) {}
 
         String output = user.getTransactionHistory().size() == startSize + 1 
-        ? "Item successfully purchased." : "Could not purchase item.";
+        ? "Item successfully purchased." : "Insufficient funds.";
         System.out.println(output);
     }
 
@@ -109,6 +112,19 @@ public class UserInterface {
         } else {
             System.out.print("Unsuccessful change to limit.");
         }
+    }
+
+    static void menu_manage_family() {
+
+    }
+
+    static void print_manage_family() {
+        System.out.println("- MANAGE FAMILY - ");
+        System.out.println("0\tEXIT");
+        System.out.println("1\tADD CHILD");
+        System.out.println("2\tCHANGE CHILD LIMIT"); 
+        System.out.println("3\tVIEW CHILD"); 
+        System.out.println("4\tBACK TO MAIN MENU"); 
     }
 
     // -----------------------------------------------------------
