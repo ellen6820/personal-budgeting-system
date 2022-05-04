@@ -1,6 +1,7 @@
 # CS345 - Software Engineering at Ithaca College
 ## Project 02 - Personal Budgeting Software
 
+Diagrams: https://drive.google.com/file/d/1gDF0TrTpYANrk5IoVP5IrdnYJBm2uIBS/view?usp=sharing
 
 Sprint [1] 
 - Scrum Master: Laci
