@@ -22,9 +22,9 @@ public class UserTest {
         @Test
         public void addIncomeTest() throws InvalidInputException{
                 User user = new User(20000, 0.0,"cc@mail.com");
-                assertEquals(70000.0, user.addIncome(70000.0)); //initial income
+                assertEquals(90000.0, user.addIncome(70000.0)); //initial income
 
-                assertEquals(25000.0, user.addIncome(25000.0));// new income
+                assertEquals(115000.0, user.addIncome(25000.0));// new income
 
                 assertThrows(InvalidInputException.class, () -> user.addIncome(0)); //invalid amount
                 assertThrows(InvalidInputException.class, () -> user.addIncome(-10000.0)); //negative amount
@@ -53,10 +53,10 @@ public class UserTest {
                 user1.createTransaction("Shopping", 10); //regular transaction
                 user1.createTransaction("Food", 50); //regular transaction
 
-                assertEquals(user1.seeHistory(), "Last 5 Transactions: \n Shopping $10 \n Food $50");
+                assertEquals(user1.seeHistory(), "#1: {Shopping, $10.0}\n#2: {Food, $50.0}\nTotal Spent: $60.0");
             
                 assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", -90)); //negative amount
-                assertThrows(IllegalArgumentException.class, () -> user1.createTransaction("Savings", 1000000000)); // more than balance
+                assertThrows(InsufficientResourcesException.class, () -> user1.createTransaction("Savings", 1000000000)); // more than balance
         }
         
 

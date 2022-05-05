@@ -12,7 +12,7 @@ public class UserInterface {
     static String username;
 
     public static void main(String[] args) throws InvalidInputException, InsufficientResourcesException {
-        System.out.println("| ------ | PERSONAL BUDGETING SYSTEM v0.2.5 | ------ |");
+        System.out.println("| ------ | PERSONAL BUDGETING SYSTEM v0.9.8 | ------ |");
         Parent testUser = init_user();
         if (testUser != null) {
             System.out.println("\nUser successfully created.");
@@ -55,7 +55,7 @@ public class UserInterface {
                     print_user_balance(user);
                     break;
                 case 5:
-                    System.out.println("...Navigating to Family Menu...");
+                    System.out.println("Navigating to Family Menu");
                     menu_manage_family();
                     break;
                 default:
@@ -86,10 +86,12 @@ public class UserInterface {
         int startSize = user.getTransactions().size();
         try {
             user.createTransaction(type, price);
-        } catch (Exception InsufficientResourcesException) {}
+        } catch (Exception InsufficientResourcesException) {
+        }
 
-        String output = user.getTransactions().size() == startSize + 1 
-        ? "Item successfully purchased." : "Insufficient funds.";
+        String output = user.getTransactions().size() == startSize + 1
+                ? "Item successfully purchased."
+                : "Insufficient funds.";
         System.out.println(output);
     }
 
@@ -100,9 +102,9 @@ public class UserInterface {
 
     static void menu_alter_limit(User localUser) throws InvalidInputException {
         System.out.println("The current limit is: " + localUser.getLimit());
-        float newLimit = (float)askForDouble("Enter desired weekly limit: ");
+        float newLimit = (float) askForDouble("Enter desired weekly limit: ");
         localUser.createLimit(newLimit);
-        if (localUser.getLimit()==newLimit) {
+        if (localUser.getLimit() == newLimit) {
             System.out.println("\nSuccessful limit change.");
         } else {
             System.out.println("\nUnsuccessful change to limit.");
@@ -114,9 +116,9 @@ public class UserInterface {
         System.out.println("- FAMILY MENU - ");
         System.out.println("0\tEXIT");
         System.out.println("1\tADD CHILD");
-        System.out.println("2\tCHANGE CHILD LIMIT"); 
-        System.out.println("3\tVIEW CHILD INFO"); 
-        System.out.println("4\tBACK TO MAIN MENU"); 
+        System.out.println("2\tCHANGE CHILD LIMIT");
+        System.out.println("3\tVIEW CHILD INFO");
+        System.out.println("4\tBACK TO MAIN MENU");
     }
 
     static void menu_manage_family() throws InvalidInputException {
@@ -142,7 +144,6 @@ public class UserInterface {
                 case 3:
                     childNum = chooseChild();
                     if (childNum >= 0) {
-                        printLine();
                         print_user_balance(user.getChildren().get(childNum));
                     }
                     break;
@@ -157,7 +158,7 @@ public class UserInterface {
     }
 
     static void init_child() {
-        if (user.getChildren().size()==0) {
+        if (user.getChildren().size() == 0) {
             System.out.println("Welcome to Tiger Parent status.");
         } else {
             System.out.println("You have " + user.getChildren().size() + " kid(s) with accounts.");
@@ -182,10 +183,10 @@ public class UserInterface {
         } else {
             System.out.println("- CHOOSE CHILD - ");
             for (int i = 0; i < numChildren; i++) {
-                System.out.println((i+1) + "\t" + user.getChildren().get(i).getEmail());
+                System.out.println((i + 1) + "\t" + user.getChildren().get(i).getEmail());
             }
             int childChoice = askForInt("Choose a child to manage: ");
-            return childChoice - 1; 
+            return childChoice - 1;
         }
     }
 
@@ -214,8 +215,7 @@ public class UserInterface {
             try {
                 input = scanner.nextInt();
                 return input;
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
                 scanner.nextLine();
             }
@@ -228,9 +228,8 @@ public class UserInterface {
         while (true) {
             try {
                 input = scanner.nextDouble();
-                return input;
-            }
-            catch (InputMismatchException e) {
+                return assertDoublePos(input);
+            } catch (InputMismatchException e) {
                 System.out.print("Invalid input. Please enter a number: ");
                 scanner.nextLine();
             }
@@ -246,7 +245,7 @@ public class UserInterface {
             String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
             java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
             java.util.regex.Matcher m = p.matcher(email);
-            isValidEmail =  m.matches();
+            isValidEmail = m.matches();
             if (isValidEmail) {
                 return email;
             } else {
@@ -254,6 +253,14 @@ public class UserInterface {
                 scanner.nextLine();
             }
         }
+    }
+
+    static double assertDoublePos(double num) {
+        while (num < 0) {
+            System.out.print("Invalid input. Please enter valid number: ");
+            num = scanner.nextDouble(); 
+        }
+        return num;
     }
         
  }

@@ -106,7 +106,9 @@ public class User {
     }
 
     Transaction createTransaction(String type, double amount) throws InsufficientResourcesException {
-        if (balance > amount){
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Negative purchase");
+        } else if (balance > amount){
             Transaction newTransaction = new Transaction(type, amount);
             balance = balance - amount;
             transactions.add(newTransaction);
