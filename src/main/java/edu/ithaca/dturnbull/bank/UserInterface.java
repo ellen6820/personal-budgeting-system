@@ -9,6 +9,7 @@ public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
     static Parent user;
     static String username;
+    static String frog;
 
     public static void main(String[] args) throws InvalidInputException, InsufficientResourcesException {
         System.out.println("| ------ | PERSONAL BUDGETING SYSTEM v0.9.8 | ------ |");
