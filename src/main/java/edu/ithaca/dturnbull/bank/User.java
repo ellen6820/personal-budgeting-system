@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import javax.naming.InsufficientResourcesException;
 
 public class User {
-    public double balance;
-    public double weeklyLimit;
-    public ArrayList<Goal> userGoals;
-    public ArrayList<Transaction> transactions;
-    public String email;
+    private double balance;
+    private double weeklyLimit;
+    private ArrayList<Goal> userGoals;
+    private ArrayList<Transaction> transactions;
+    private String email;
 
     public User(double balance, double weeklyLimit, String email) {
         this.balance = balance;
@@ -97,8 +97,8 @@ public class User {
         }
 
         for (int i = startParse; i < transactions.size(); i++) {
-            output += "#" + (i + 1) + ": {" + transactions.get(i).type + ", $" + transactions.get(i).amount + "}\n";
-            sumAmount += transactions.get(i).amount;
+            output += "#" + (i + 1) + ": {" + transactions.get(i).getType() + ", $" + transactions.get(i).getAmount() + "}\n";
+            sumAmount += transactions.get(i).getAmount();
         }
         output += "Total Spent: $" + sumAmount;
         return output;

@@ -28,8 +28,8 @@ public class Parent extends User {
     }
 
     // allows a parent to influence a child's weekly spending limit
-    void setChildLimit(Child child, double limit) {
-        child.weeklyLimit = limit;
+    void setChildLimit(Child child, double limit) throws InvalidInputException {
+        child.createLimit(limit);
     }
 
     // allows a parent to see a child's most recent spending

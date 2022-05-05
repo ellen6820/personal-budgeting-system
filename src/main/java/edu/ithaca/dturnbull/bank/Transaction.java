@@ -2,8 +2,8 @@ package edu.ithaca.dturnbull.bank;
 
 public class Transaction{
 
-    public double amount;
-    public String type;
+    private double amount;
+    private String type;
 
     public Transaction(String type, double amount){
         this.type = type;

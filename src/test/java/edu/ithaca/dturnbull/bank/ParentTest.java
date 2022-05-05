@@ -16,7 +16,7 @@ public class ParentTest {
     }
 
     @Test
-    void setLimitTest() {
+    void setLimitTest() throws InvalidInputException {
         Parent parent = new Parent(0.0, 0.0, "parent@gmail.com");
         Child child = parent.addChild(0.0, 10.0, "kid@gmail.com");
         assertEquals(10.0, child.getLimit()); // Tests that value of limit for child matches limit from adding child
