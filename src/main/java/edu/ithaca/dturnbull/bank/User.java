@@ -88,18 +88,17 @@ public class User {
     public String seeHistory() {
         String output = "";
         double sumAmount = 0;
-        int transactionNumber = 1;
 
         //last 10 transactions only 
         int startParse = 0;
         if (transactions.size() > 10) {
+            output += "...\n";
             startParse = transactions.size() - 10;
         }
 
         for (int i = startParse; i < transactions.size(); i++) {
-            output += "#" + transactionNumber + ": {" + transactions.get(i).type + ", $" + transactions.get(i).amount + "}\n";
+            output += "#" + (i + 1) + ": {" + transactions.get(i).type + ", $" + transactions.get(i).amount + "}\n";
             sumAmount += transactions.get(i).amount;
-            transactionNumber += 1;
         }
         output += "Total Spent: $" + sumAmount;
         return output;

@@ -12,35 +12,33 @@ public class TransactionTest {
 
         //no transactions
         assertEquals("Total Spent: $0.0", user1.seeHistory());
+        assertEquals(0, user1.getTransactions().size());
 
         user1.createTransaction("Food", 10);
         user1.createTransaction("Shopping", 20);
         user1.createTransaction("Education", 1000);
 
-        assertEquals("#1: {Food, $10.0}\n#2: {Shopping, $20.0}\n#3: {Education, $1000.0}\nTotal Spent: $1030.0", user1.seeHistory());
+        // basic transactions object containment
+        assertEquals("Food", user1.getTransactions().get(0).getType());
+        assertEquals(10, user1.getTransactions().get(0).getAmount());
+        assertEquals("Education", user1.getTransactions().get(2).getType());
+        assertEquals(1000, user1.getTransactions().get(2).getAmount());
+        assertEquals(3, user1.getTransactions().size());
 
-        //less than 10 transactions
-        user1.createTransaction("Food", 10);
-        user1.createTransaction("Shopping", 20);
-        user1.createTransaction("Education", 1000);
-        user1.createTransaction("Food", 10);
+        // filler transactions to push past display cap
+        for (int i = 0; i < 8; i++) {
+            user1.createTransaction("Filler", 5);
+        }
 
-        assertEquals("#1: {Food, $10.0}\n#2: {Shopping, $20.0}\n#3: {Education, $1000.0}\n#4: {Food, $10.0}\n#5: {Shopping, $20.0}\n#6: {Education, $1000.0}\n#7: {Food, $10.0}\nTotal Spent: $2070.0", user1.seeHistory());
+        // show that balance is affected
+        assertEquals(11, user1.getTransactions().size());
+        assertEquals(48930.0, user1.getBalance()); 
 
-        //10 transactions
-        user1.createTransaction("Shopping", 20);
-        user1.createTransaction("Education", 1000);
-        user1.createTransaction("Food", 10);
-
-        assertEquals("#1: {Food, $10.0}\n#2: {Shopping, $20.0}\n#3: {Education, $1000.0}\n#4: {Food, $10.0}\n#5: {Shopping, $20.0}\n#6: {Education, $1000.0}\n#7: {Food, $10.0}\n#8: {Shopping, $20.0}\n#9: {Education, $1000.0}\n#10: {Food, $10.0}\nTotal Spent: $3100.0", user1.seeHistory());
-        assertEquals(46900.0, user1.getBalance()); //show that balance is affected
-
-        //more than 10 transactions
+        // tests string concatenation
         user1.createTransaction("Donation", 50);
         user1.createTransaction("Misc", 100);
         user1.createTransaction("Travel", 50);
-
-        assertEquals("#1: {Food, $10.0}\n#2: {Shopping, $20.0}\n#3: {Education, $1000.0}\n#4: {Food, $10.0}\n#5: {Shopping, $20.0}\n#6: {Education, $1000.0}\n#7: {Food, $10.0}\n#8: {Donation, $50.0}\n#9: {Misc, $100.0}\n#10: {Travel, $50.0}\nTotal Spent: $2270.0", user1.seeHistory());
+        assertEquals("...\n#5: {Filler, $5.0}\n#6: {Filler, $5.0}\n#7: {Filler, $5.0}\n#8: {Filler, $5.0}\n#9: {Filler, $5.0}\n#10: {Filler, $5.0}\n#11: {Filler, $5.0}\n#12: {Donation, $50.0}\n#13: {Misc, $100.0}\n#14: {Travel, $50.0}\nTotal Spent: $235.0", user1.seeHistory());
 
         //Parent - child test
         Parent user2 = new Parent(10000, 200, "adult@gmail.com");
@@ -51,26 +49,14 @@ public class TransactionTest {
         userChild.createTransaction("Food", 5);
         userChild.createTransaction("Food", 5);
         userChild.createTransaction("Food", 5);
-        System.out.println(userChild.transactions.size());
 
-
+        // tests Child object retrivement and updating
+        assertEquals("Food", user2.getChildren().get(0).getTransactions().get(0).getType());
+        assertEquals("Food", user2.getChildren().get(0).getTransactions().get(2).getType());
+   
+        // tests string concatenation through child
         assertEquals("#1: {Food, $5.0}\n#2: {Food, $5.0}\n#3: {Food, $5.0}\nTotal Spent: $15.0", user2.seeChildHistory());
 
-        userChild.createTransaction("Shopping", 10);
-
-        assertEquals("#1: {Food, $5.0}\n#2: {Food, $5.0}\n#3: {Food, $5.0}\n#4: {Shopping, $10.0}\nTotal Spent: $25.0", user2.seeChildHistory());
-
-        //parent creates transactions independent of child
-        user2.createTransaction("Food", 100);
-        user2.createTransaction("Shopping", 20);
-        user2.createTransaction("Food", 50);
-
-        assertEquals("#1: {Food, $100.0}\n#2: {Shopping, $20.0}\n#3: {Food, $50.0}\nTotal Spent: $170.0", user2.seeHistory());
-
-        user2.createTransaction("Shopping", 50);
-
-        assertEquals("#1: {Food, $100.0}\n#2: {Shopping, $20.0}\n#3: {Food, $50.0}\n#4: {Shopping, $50.0}\nTotal Spent: $220.0", user2.seeHistory());
-        
     }
     
 }
