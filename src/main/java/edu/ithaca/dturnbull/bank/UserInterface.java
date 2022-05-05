@@ -1,8 +1,7 @@
 package edu.ithaca.dturnbull.bank;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import java.util.InputMismatchException;
 import javax.naming.InsufficientResourcesException;
 
 public class UserInterface {

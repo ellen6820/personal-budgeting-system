@@ -6,7 +6,4 @@ public class Child extends User{
         super(balance, weeklyLimit, email);
 
     }
-
-
-
 }

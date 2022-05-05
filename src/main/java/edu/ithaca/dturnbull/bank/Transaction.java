@@ -1,14 +1,12 @@
 package edu.ithaca.dturnbull.bank;
 
 public class Transaction{
-
     private double amount;
     private String type;
 
     public Transaction(String type, double amount){
         this.type = type;
         this.amount = amount;
- 
     }
 
     String getType(){
@@ -18,5 +16,4 @@ public class Transaction{
     double getAmount(){
         return amount;
     }
-    
 }

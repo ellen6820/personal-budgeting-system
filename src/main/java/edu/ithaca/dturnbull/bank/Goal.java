@@ -1,10 +1,9 @@
 package edu.ithaca.dturnbull.bank;
 
 public class Goal {
-    
-    public String goals;
-    public double amount;
-    public double amountSaved;
+    private String goals;
+    private double amount;
+    private double amountSaved;
 
     public Goal(String goals, double amount){
         this.goals = goals;

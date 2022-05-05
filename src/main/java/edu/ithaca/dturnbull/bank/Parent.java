@@ -2,11 +2,9 @@ package edu.ithaca.dturnbull.bank;
 
 import java.util.ArrayList;
 
-//import java.lang.reflect.Array;
-
 public class Parent extends User {
 
-    public ArrayList<Child> children;
+    private ArrayList<Child> children;
 
     // Constructor - calls super constructor from user
     public Parent(double balance, double weeklyLimit, String email) {

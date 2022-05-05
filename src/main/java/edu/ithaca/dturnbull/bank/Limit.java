@@ -1,11 +1,11 @@
 package edu.ithaca.dturnbull.bank;
 
 public class Limit {
-    public String limitType;
-    public double amount;
-    public double amountSpent;
+    private String limitType;
+    private double amount;
+    private double amountSpent;
 
-    public Limit(String limitType,double amount, double amountSpent){
+    public Limit(String limitType, double amount, double amountSpent){
         this.limitType = limitType;
         this.amount = amount;
         this.amountSpent = amountSpent;
