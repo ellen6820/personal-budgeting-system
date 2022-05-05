@@ -1,4 +1,4 @@
-package edu;
+package edu.ithaca.dturnbull.bank;
 
 public class Limit {
     public String limitType;
