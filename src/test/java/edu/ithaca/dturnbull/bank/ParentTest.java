@@ -27,9 +27,9 @@ public class ParentTest {
     @Test
     void seeChildHistoryTest() {
         Parent parent = new Parent(0.0, 0.0, "parent@gmail.com");
-        Child child1 = parent.addChild(0.0, 0.0, "kid@gmail.com");
-        Child child2 = parent.addChild(10.0, 10.0, "kid@gmail.com");
-        Child child3 = parent.addChild(50.0, 10.0, "kid@gmail.com");
+        parent.addChild(0.0, 0.0, "kid@gmail.com");
+        parent.addChild(10.0, 10.0, "kid@gmail.com");
+        parent.addChild(50.0, 10.0, "kid@gmail.com");
         ArrayList<Child> children = parent.getChildren();
         assertEquals(3, parent.getChildren().size()); // Tests that all 3 children are correctly inserted into list
         assertEquals(0.0, children.get(0).getBalance()); // Tests balance of first child in list

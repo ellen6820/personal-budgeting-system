@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 import javax.naming.InsufficientResourcesException;
 
 public class UserInterface {
-
     static Scanner scanner = new Scanner(System.in);
     static Parent user;
     static String username;
@@ -85,8 +84,7 @@ public class UserInterface {
         int startSize = user.getTransactions().size();
         try {
             user.createTransaction(type, price);
-        } catch (Exception InsufficientResourcesException) {
-        }
+        } catch (Exception InsufficientResourcesException) { }
 
         String output = user.getTransactions().size() == startSize + 1
                 ? "Item successfully purchased."
@@ -261,5 +259,4 @@ public class UserInterface {
         }
         return num;
     }
-        
  }
