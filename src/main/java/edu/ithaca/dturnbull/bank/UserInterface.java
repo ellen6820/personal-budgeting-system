@@ -55,6 +55,9 @@ public class UserInterface {
                     print_user_balance(user);
                     break;
                 case 5:
+                    add_income(user);
+                    break;
+                case 6:
                     System.out.println("Navigating to Family Menu");
                     menu_manage_family();
                     break;
@@ -72,7 +75,20 @@ public class UserInterface {
         System.out.println("2\tVIEW TRANSACTION HISTORY");
         System.out.println("3\tCHANGE WEEKLY LIMIT");
         System.out.println("4\tVIEW BALANCE & LIMIT");
-        System.out.println("5\tOPEN FAMILY MANAGER");
+        System.out.println("5\tADD INCOME");
+        System.out.println("6\tOPEN FAMILY MANAGER");
+    }
+
+    static void add_income(User localUser) throws InvalidInputException {
+        double startingBalance = user.getBalance();
+        double amountToAdd = askForDouble("How much will be added to balance? ");
+        localUser.addIncome(amountToAdd);
+        if ((user.getBalance() - amountToAdd) == startingBalance) {
+            System.out.println("Successful deposit.");
+        } else {
+            System.out.println("Unsuccessful deposit.");
+        }
+        
     }
 
     static void menu_purchase() throws InsufficientResourcesException {
@@ -101,7 +117,7 @@ public class UserInterface {
     }
 
     static void menu_alter_limit(User localUser) throws InvalidInputException {
-        System.out.println("The current limit is: " + localUser.getLimit());
+        System.out.printf("The current limit is: $%.2f\n", localUser.getLimit());
         float newLimit = (float) askForDouble("Enter desired weekly limit: ");
         localUser.createLimit(newLimit);
         if (localUser.getLimit() == newLimit) {
@@ -199,13 +215,13 @@ public class UserInterface {
     }
 
     static void printLine() {
-        System.out.println("---------------------------");
+        System.out.println("-------------------------------");
     }
 
     static void print_user_balance(User localUser) {
         System.out.println(localUser.getEmail() + " info:");
-        System.out.println("Current balance: $" + localUser.getBalance());
-        System.out.println("Current limit: $" + localUser.getLimit());
+        System.out.printf("Current balance: $%.2f\n", localUser.getBalance());
+        System.out.printf("Current limit: $%.2f\n", localUser.getLimit());
     }
 
     static int askForInt(String message) {
